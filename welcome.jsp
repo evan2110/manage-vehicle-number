@@ -18,8 +18,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script src="https://kit.fontawesome.com/7a93c85040.js" crossorigin="anonymous"></script>
-    <% ArrayList<Account> Accounts = (ArrayList<Account>)request.getAttribute("Account");
-    %>
+
 </head>
 <body>
 <style>
@@ -222,7 +221,7 @@ body {
     color: #94caee;
     border-radius: 50px;
     padding: 50px;
-    margin-top: 2%;
+    margin-top: 1%;
     margin-left: 3%;
 }
 
@@ -344,13 +343,16 @@ body {
     function validate() {
     var username = document.getElementById("username").value;
     var password = document.getElementById("password").value;
+    var form = document.getElementsByTagName("form")[0];
 
     if(username=== "") {
-    alert("Vui lòng nhập tên!");
+    alert("Vui lòng nhập tên đăng nhập!");
+    form.setAttribute("action","#");
     return false;
     }
     if(password === "") {
     alert("Vui lòng nhập mật khẩu!");
+    form.setAttribute("action","#");
     return false;
     }
     }
@@ -365,23 +367,27 @@ body {
     var username = document.getElementById("username1").value;
     var password = document.getElementById("password1").value;
     var password1 = document.getElementById("password2").value;
-
+    var form = document.getElementsByTagName("form")[1];
 
     if(username=== "") {
-    alert("Vui lòng nhập tên!");
+    alert("Vui lòng nhập tên đăng nhập!");
+    form.setAttribute("action","#");
     return false;
     }
     if(password === "") {
     alert("Vui lòng nhập mật khẩu!");
+    form.setAttribute("action","#");
     return false;
     }
     if(password1 === "") {
     alert("Vui lòng nhập lại mật khẩu!");
+    form.setAttribute("action","#");
     return false;
     }
     if(password1 !== password){
-      alert("Mật khẩu bạn vừa nhập không khớp!");
-      return false;
+    alert("Mật khẩu bạn vừa nhập không khớp!");
+    form.setAttribute("action","#");
+    return false;
     }
     }
     function openeye(){
@@ -421,18 +427,10 @@ body {
     function signinnow(){
       var change = document.getElementById("form_signup");
                 change.style.display = "none";
-      var change = document.getElementById("form_signin");
-      change.style.display = "block";
+      var change2 = document.getElementById("form_signin");
+      change2.style.display = "block";
     }
-    function openCongra_Signup(){
-        var change = document.getElementById("congra_signup");
-        change.style.display = "inline-block";
-    }
-    function openCongra_Signin(){
-        var change = document.getElementById("congra_signin");
-        change.style.display = "inline-block";
-    }
-    
+
   </script>
     <div class="header">
             <div class="header-img">
@@ -441,25 +439,24 @@ body {
             <div class="header-nav">
                 <ul>
                     <li><a href="#">Trang Chủ</a></li>
-                    <li><a href="#">Quản Lý</a></li>
+                    <li><a href="./manager/search">Quản Lý</a></li>
                     <li><a href="#">Báo Cáo</a></li>
                     <li><a href="#">Liên Hệ</a></li>
-                    <li onclick="signin_open()"><a href="#">Đăng nhập</a></li>
-                    <li onclick="signup_open()"><a href="#">Đăng Ký</a></li> 
+                    <li id="signin" onclick="signin_open()"><a href="#">Đăng nhập</a></li>
+                    <li id="signup" onclick="signup_open()"><a href="#">Đăng Ký</a></li> 
                 </ul>
             </div>
     </div>
     <div id="form_signin">
-      <form>
+        <form method="POST" action="./signin">
           <i class="fa-solid fa-x close_item1" onclick="signin_close(); deletedata()"></i>
           <label id="form_signin_title">Sign In</label> <br/>
           <label>Username</label>
-          <input type="text" id="username" placeholder="username"/> <br/>
+          <input name="username" type="text" id="username" placeholder="username"/> <br/>
           <label>Password</label>
-          <input type="password" id="password" placeholder="password"/>
+          <input name="password" type="password" id="password" placeholder="password"/>
           <i onclick="openeye()" class="fa-solid fa-eye eye1"></i> <br/>
-          <input type="submit" value="Sign In" onclick="validate(); openCongra_Signin()"/>
-          <span id="congra_signin">Bạn đã đăng nhập thành công</span>
+          <input type="submit" value="Sign In" onclick="validate()"/>
           <br/> 
           <p onclick="signupnow()">Bạn chưa có tài khoản ? <a href="#">Đăng ký ngay</a></p>
       </form>
@@ -476,8 +473,7 @@ body {
         <label>Re-password</label>  
         <input type="password" id="password2" placeholder="Re-password"/>
         <i onclick="openeye2()" class="fa-solid fa-eye eye3"></i> <br/>
-        <input type="submit" value="Sign up" onclick="validate1(); openCongra_Signup();"/>
-        <span id="congra_signup">Bạn đã đăng ký thành công</span>
+        <input type="submit" value="Sign up" onclick="validate1()"/>
         <br/> 
         <p onclick="signinnow()">Bạn đã có tài khoản ? <a href="#">Đăng nhập ngay</a> </p>
     </form>
