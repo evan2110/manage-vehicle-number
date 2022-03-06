@@ -14,20 +14,28 @@ import java.sql.Date;
 public class Student {
     private int id;
     private String name;
-    private Vehicle vehicle;
     private Date dob;
-    private String class_name;
+    private int cid;
+    private int vid;
+    private Classes classes;
+    private Vehicle vehicle;
+
 
     public Student() {
     }
 
-    public Student(int id, String name, Vehicle vehicle, Date dob, String class_name) {
+    public Student(int id, String name, Date dob, int cid, int vid, Classes classes, Vehicle vehicle) {
         this.id = id;
         this.name = name;
-        this.vehicle = vehicle;
         this.dob = dob;
-        this.class_name = class_name;
+        this.cid = cid;
+        this.vid = vid;
+        this.classes = classes;
+        this.vehicle = vehicle;
     }
+
+    
+    
 
     public int getId() {
         return id;
@@ -45,14 +53,6 @@ public class Student {
         this.name = name;
     }
 
-    public Vehicle getVehicle() {
-        return vehicle;
-    }
-
-    public void setVehicle(Vehicle vehicle) {
-        this.vehicle = vehicle;
-    }
-
     public Date getDob() {
         return dob;
     }
@@ -61,13 +61,46 @@ public class Student {
         this.dob = dob;
     }
 
-    public String getClass_name() {
-        return class_name;
+    public int getCid() {
+        return cid;
     }
 
-    public void setClass_name(String class_name) {
-        this.class_name = class_name;
+    public void setCid(int cid) {
+        this.cid = cid;
     }
+
+    public Vehicle getVehicle() {
+        return vehicle;
+    }
+
+    public void setVehicle(Vehicle vehicle) {
+        this.vehicle = vehicle;
+    }
+
+    public Classes getClasses() {
+        return classes;
+    }
+
+    public void setClasses(Classes classes) {
+        this.classes = classes;
+    }
+
+    public int getVid() {
+        return vid;
+    }
+
+    public void setVid(int vid) {
+        this.vid = vid;
+    }
+
+    
+
+    
+
+    
+
+    
+    
     
     
 }

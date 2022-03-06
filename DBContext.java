@@ -1,13 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package dal;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -15,13 +11,14 @@ import java.util.logging.Logger;
  *
  * @author Sap-lap
  */
-public class DBContext {
+public abstract class DBContext<T> {
+
     protected Connection connection;
-    public DBContext()
-    {
+
+    public DBContext() {
         try {
             String user = "ducdn";
-            String pass = "12345";
+            String pass = "2110";
             String url = "jdbc:sqlserver://MSINHATDUC\\SQLEXPRESS:1433;databaseName=assignment";
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             connection = DriverManager.getConnection(url, user, pass);
@@ -31,4 +28,14 @@ public class DBContext {
             Logger.getLogger(DBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public abstract ArrayList<T> all();
+
+    public abstract T get(int id);
+
+    public abstract void insert(T model);
+
+    public abstract void update(T model);
+
+    public abstract void delete(int id);
 }
