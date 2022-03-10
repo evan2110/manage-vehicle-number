@@ -23,8 +23,8 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
         <script src="https://kit.fontawesome.com/7a93c85040.js" crossorigin="anonymous"></script>
-        <link href="../css/css.css" rel="stylesheet" type="text/css"/>
-        <script src="../js/js.js" type="text/javascript"></script>
+        <link href="./css/css.css" rel="stylesheet" type="text/css"/>
+    <script src="./js/js.js" type="text/javascript"></script>
         <%
             ArrayList<Classes> classes = (ArrayList<Classes>) request.getAttribute("classes");
             Student s = (Student)request.getAttribute("student");
@@ -39,7 +39,7 @@
                 <ul>
                     <li><a href="/">Trang Chủ</a></li>
                     <li><a href="/search">Quản Lý</a></li>
-                    <li><a href="#">Báo Cáo</a></li>
+                    <li><a href="/report">Báo Cáo</a></li>
                     <li><a href="#">Liên Hệ</a></li>
                     <li><a href="#">Hello</a></li>
                 </ul>
@@ -48,11 +48,11 @@
         <div class="cotainer">
         <form action="edit" method="POST">
             Id: <%=s.getId()%> <input type="hidden" name="id" value="<%=s.getId()%>" /> <br/>
-            Name: <input type="text" name="name" value="<%=s.getName()%>"/> <br/>
+            Name: <input type="text" name="name" value="<%=s.getName()%>" required pattern="([a-zA-Z ])*"/> <br/>
             Dob: <input type="date" name="dob" value="<%=s.getDob()%>" /> <br/>
             Vehicle's ID <%=s.getVehicle().getId()%> <input type="hidden" name="vid" value="<%=s.getVehicle().getId()%>" /> <br/>
-            Vehicle's Name: <input type="text" name="vname" value="<%=s.getVehicle().getName()%>"/> <br/>
-            Vehicle's Color: <input type="text" name="color" value="<%=s.getVehicle().getColor()%>"/> <br/>
+            Vehicle's Name: <input type="text" name="vname" value="<%=s.getVehicle().getName()%>" required pattern="([a-zA-Z ])*"/> <br/>
+            Vehicle's Color: <input type="text" name="color" value="<%=s.getVehicle().getColor()%>" required pattern="([a-zA-Z ])*"/> <br/>
 
             Class <select name="cid">
                 <% for (Classes c : classes) {

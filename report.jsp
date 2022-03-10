@@ -1,12 +1,11 @@
 <%-- 
-    Document   : insert
-    Created on : Mar 3, 2022, 11:14:40 AM
+    Document   : report
+    Created on : Mar 10, 2022, 11:36:03 AM
     Author     : duc21
 --%>
 
-<%@page import="model.Account"%>
+<%@page import="model.Report"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="model.Classes"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -25,9 +24,8 @@
         <script src="https://kit.fontawesome.com/7a93c85040.js" crossorigin="anonymous"></script>
         <link href="./css/css.css" rel="stylesheet" type="text/css"/>
     <script src="./js/js.js" type="text/javascript"></script>
-        <%
-            ArrayList<Classes> classes = (ArrayList<Classes>) request.getAttribute("classes");
-        %>
+    <% ArrayList<Report> Reports = (ArrayList<Report>)request.getAttribute("reports");
+    %>
     </head>
     <body>
         <div class="header">
@@ -45,23 +43,26 @@
             </div>
         </div>
         <div class="cotainer">
-        <form action="insert" method="POST">
-            Id: <input type="text" name="id"  required pattern="([0-9])*"/> <br/>
-            Name: <input type="text" name="name"  required pattern="([a-zA-Z ])*"/> <br/>
-            Dob: <input type="date" name="dob"  required/> <br/>
-            Vehicle's ID: <input type="text" name="vid"  required pattern="([0-9])*"/> <br/>
-            Vehicle's Name: <input type="text" name="vname"  required pattern="([a-zA-Z ])*"/> <br/>
-            Vehicle's Color: <input type="text" name="color"  required pattern="([a-zA-Z ])*"/> <br/>
-            Class <select name="cid">
-                <% for (Classes c : classes) {
-                %>
-                <option value="<%=c.getId()%>"><%=c.getName()%></option>
-                <%}%>
-            </select>
+        <form action="report" method="POST">
+                Input your's feedback: <input type="text" name="report" required pattern="([0-9a-zA-Z ])*"/> <br/>  
             <br/>
-            <input type="submit" value="Save"/>
+            <input type="submit" value="Save"/> <br/>
         </form>
+            <br/>
+        <table border="2px">
+            
+                    <tr>
+                        <td>FeedBack</td>
+                    </tr>
+                        <% for (Report r : Reports) {
+                          %>  
+                    <tr>
+                        <td><%=r.getContent() %></td> 
+                        <%}%>
+                    </tr>
+        </table>
         </div>
+            </div>
             <div class="footer">
             <h3>Liên hệ với chúng tôi:</h3> 
             <p>Sdt: 0977096708

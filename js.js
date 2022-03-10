@@ -1,8 +1,3 @@
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 function signin_close(){
       var change = document.getElementById("form_signin");
                 change.style.display = "none";
@@ -107,3 +102,5 @@ function signin_close(){
       change2.style.display = "block";
     }
 
+    
+    

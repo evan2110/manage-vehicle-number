@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package dal;
 
 import java.sql.PreparedStatement;
@@ -27,7 +22,7 @@ public class StudentDBContext extends DBContext<Student> {
             String sql = "SELECT s.sid, s.sname, s.dob, v.vid, v.vname, v.color, c.cid, c.cname FROM Student s INNER JOIN Class c ON s.cid = c.cid\n" +
 "                    INNER JOIN Vehicle v ON s.vid = v.vid";
             if (cid > -1) {
-                sql += " and c.cid = ?";
+                sql += " WHERE c.cid = ?";
             }
             PreparedStatement stm = connection.prepareStatement(sql);
 

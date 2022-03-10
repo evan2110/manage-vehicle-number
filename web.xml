@@ -32,6 +32,10 @@
         <servlet-name>DeleteController</servlet-name>
         <servlet-class>controller.manage.DeleteController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ReportController</servlet-name>
+        <servlet-class>controller.report.ReportController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>SigninController</servlet-name>
         <url-pattern>/signin</url-pattern>
@@ -63,6 +67,10 @@
     <servlet-mapping>
         <servlet-name>DeleteController</servlet-name>
         <url-pattern>/delete</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ReportController</servlet-name>
+        <url-pattern>/report</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

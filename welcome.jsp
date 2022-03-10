@@ -31,7 +31,7 @@
             <ul>
                 <li><a href="#">Trang Chủ</a></li>
                 <li><a href="/search">Quản Lý</a></li>
-                <li><a href="#">Báo Cáo</a></li>
+                <li><a href="/report">Báo Cáo</a></li>
                 <li><a href="#">Liên Hệ</a></li>
                 <li id="signin" onclick="signin_open()"><a href="#">Đăng nhập</a></li>
                 <li id="signup" onclick="signup_open()"><a href="#">Đăng Ký</a></li> 

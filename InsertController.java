@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controller.manage;
 
 import controller.auth.BaseController;
@@ -40,14 +35,6 @@ public class InsertController extends BaseController {
         request.getRequestDispatcher("/view/insert.jsp").forward(request, response);
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void processPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -58,7 +45,6 @@ public class InsertController extends BaseController {
         String raw_vname = request.getParameter("vname");
         String raw_color = request.getParameter("color");
         String raw_cid = request.getParameter("cid");
-
         
         //processing - validate data
         int cid = Integer.parseInt(raw_cid);
