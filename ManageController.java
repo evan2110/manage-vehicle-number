@@ -31,8 +31,26 @@ public class ManageController extends BaseController {
         int id = Integer.parseInt(raw_id);
         StudentDBContext dbStudent = new StudentDBContext();
         ArrayList<Student> students = dbStudent.getStudentByClass(id);
-        request.setAttribute("students", students);
+        
+        String index_raw = request.getParameter("index");
+        if (index_raw == null || index_raw.length() == 0) {
+            index_raw = "1";
+        }
+        int index = Integer.parseInt(index_raw);
+        
+        
+        ArrayList<Student> listpage = dbStudent.getlistpage(index, students);
+        request.setAttribute("listpage", listpage);
         request.setAttribute("id", id);
+        
+        int count = dbStudent.count(id);
+        int endPage = count/5;
+        if(count % 5 != 0){
+            endPage++;
+        }
+        
+        request.setAttribute("endP", endPage);
+        
         request.getRequestDispatcher("/view/manager.jsp").forward(request, response);
     }
 

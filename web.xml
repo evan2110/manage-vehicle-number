@@ -36,6 +36,18 @@
         <servlet-name>ReportController</servlet-name>
         <servlet-class>controller.report.ReportController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ContactController</servlet-name>
+        <servlet-class>controller.contact.ContactController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LogoutController</servlet-name>
+        <servlet-class>controller.auth.LogoutController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddClassController</servlet-name>
+        <servlet-class>controller.manage.AddClassController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>SigninController</servlet-name>
         <url-pattern>/signin</url-pattern>
@@ -71,6 +83,18 @@
     <servlet-mapping>
         <servlet-name>ReportController</servlet-name>
         <url-pattern>/report</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ContactController</servlet-name>
+        <url-pattern>/contact</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LogoutController</servlet-name>
+        <url-pattern>/logout</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddClassController</servlet-name>
+        <url-pattern>/addclass</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package dal;
 
 import java.sql.PreparedStatement;
@@ -64,7 +59,7 @@ public class ReportDBContext extends DBContext<Report>{
                 try {
                     stm.close();
                 } catch (SQLException ex) {
-                    Logger.getLogger(StudentDBContext.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(ReportDBContext.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
             if(connection != null)
@@ -72,7 +67,7 @@ public class ReportDBContext extends DBContext<Report>{
                 try {
                     connection.close();
                 } catch (SQLException ex) {
-                    Logger.getLogger(StudentDBContext.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(ReportDBContext.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }
@@ -86,6 +81,33 @@ public class ReportDBContext extends DBContext<Report>{
     @Override
     public void delete(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    public int count()
+    {
+        try {
+            String sql = "SELECT count(*) as Total FROM Report";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            ResultSet rs = stm.executeQuery();
+            if(rs.next())
+            {
+                return rs.getInt("Total");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ReportDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return 0;
+    }
+    
+    
+    
+    public ArrayList<Report> getlistpage(int page,ArrayList<Report> ar){
+        ArrayList<Report> a=new ArrayList<>();
+        for(int i=0;i<ar.size();i++){
+            if(i>=((page-1)*5)&&i<(page*5))
+                a.add(ar.get(i));
+        }
+        return a;
     }
     
 }

@@ -8,8 +8,11 @@ function signin_close(){
             }
 
     function signin_open(){
+                var change = document.getElementById("form_signup");
+                change.style.display = "none";
                 var change = document.getElementById("form_signin");
                 change.style.display = "block";
+                
             }
     function validate() {
     var username = document.getElementById("username").value;

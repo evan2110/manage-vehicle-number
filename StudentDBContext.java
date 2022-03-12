@@ -237,4 +237,37 @@ public class StudentDBContext extends DBContext<Student> {
         }
         return null;
     }
+    
+    public int count(int cid)
+    {
+        try {
+            String sql = "SELECT count(*) as Total FROM Student";
+             if (cid > -1) {
+                sql += " WHERE cid = ?";
+            }
+            PreparedStatement stm = connection.prepareStatement(sql);
+            if (cid > -1) {
+                stm.setInt(1, cid);
+            }
+            ResultSet rs = stm.executeQuery();
+            if(rs.next())
+            {
+                return rs.getInt("Total");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(StudentDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return 0;
+    }
+    
+    
+    
+    public ArrayList<Student> getlistpage(int page,ArrayList<Student> ar){
+        ArrayList<Student> a=new ArrayList<>();
+        for(int i=0;i<ar.size();i++){
+            if(i>=((page-1)*5)&&i<(page*5))
+                a.add(ar.get(i));
+        }
+        return a;
+    }
 }

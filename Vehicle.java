@@ -13,7 +13,7 @@ public class Vehicle {
     }
 
     public Vehicle(int id, String name, String color) {
-        this.id = id;
+        this.id = id;   
         this.name = name;
         this.color = color;
     }
@@ -41,6 +41,5 @@ public class Vehicle {
     public void setColor(String color) {
         this.color = color;
     }
-    
-    
+      
 }

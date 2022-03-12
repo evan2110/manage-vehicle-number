@@ -4,6 +4,7 @@
     Author     : duc21
 --%>
 
+<%@page import="model.Account"%>
 <%@page import="model.Report"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -11,7 +12,6 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
         <title>Quan ly nha xe</title>
         <link rel="icon" href="/pic/logo.png" type="image/x-icon" />
         <meta charset="utf-8">
@@ -24,9 +24,30 @@
         <script src="https://kit.fontawesome.com/7a93c85040.js" crossorigin="anonymous"></script>
         <link href="./css/css.css" rel="stylesheet" type="text/css"/>
     <script src="./js/js.js" type="text/javascript"></script>
-    <% ArrayList<Report> Reports = (ArrayList<Report>)request.getAttribute("reports");
+    <% ArrayList<Report> Reports = (ArrayList<Report>)request.getAttribute("listpage");
+    Account account = (Account)request.getSession().getAttribute("account");
+    int endP = (Integer)request.getAttribute("endP");
     %>
     </head>
+    <style>
+        .cotainer {
+                height: 600px;
+                margin-left: 700px;
+                margin-top: 100px;
+                font-size: 18px;
+                font-weight: bolder;
+            }
+        .cotainer table {
+                width: 50%;
+                margin-bottom: 30px;
+        }
+        .cotainer a {
+            text-decoration: none;
+            background-color: #d7eaf7;
+            padding: 3px;
+            border-radius: 10px;
+        }
+    </style>
     <body>
         <div class="header">
             <div class="header-img">
@@ -37,22 +58,22 @@
                     <li><a href="/">Trang Chủ</a></li>
                     <li><a href="/search">Quản Lý</a></li>
                     <li><a href="/report">Báo Cáo</a></li>
-                    <li><a href="#">Liên Hệ</a></li>
-                    <li><a href="#">Hello</a></li>
+                    <li><a href="/contact">Liên Hệ</a></li>
+                    <li><a href="#">Hello <%=account.getUsername()%></a></li>
+                    <li><a href="/logout">Đăng Xuất</a></li>
                 </ul>
             </div>
         </div>
         <div class="cotainer">
         <form action="report" method="POST">
                 Input your's feedback: <input type="text" name="report" required pattern="([0-9a-zA-Z ])*"/> <br/>  
-            <br/>
-            <input type="submit" value="Save"/> <br/>
+                <input style="margin-left: 300px; margin-top: 20px;" type="submit" value="Save"/> <br/>
         </form>
             <br/>
-        <table border="2px">
+        <table style="border:2px solid black;text-align: center;">
             
                     <tr>
-                        <td>FeedBack</td>
+                        <td style="color: blue;"><p style="background-color: #d7eaf7; display: inline-block; border-radius: 10px; margin-top: 10px;">FeedBack: </p></td> <br/>
                     </tr>
                         <% for (Report r : Reports) {
                           %>  
@@ -61,6 +82,10 @@
                         <%}%>
                     </tr>
         </table>
+            Page: <% for (int i = 1; i <= endP; i++) {
+            %>
+            <a href="report?index2=<%=i%>"><%=i%></a>
+            <%}%> <br/>
         </div>
             </div>
             <div class="footer">

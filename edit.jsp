@@ -4,6 +4,7 @@
     Author     : duc21
 --%>
 
+<%@page import="model.Account"%>
 <%@page import="model.Student"%>
 <%@page import="model.Classes"%>
 <%@page import="java.util.ArrayList"%>
@@ -12,7 +13,6 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
         <title>Quan ly nha xe</title>
         <link rel="icon" href="/pic/logo.png" type="image/x-icon" />
         <meta charset="utf-8">
@@ -28,9 +28,31 @@
         <%
             ArrayList<Classes> classes = (ArrayList<Classes>) request.getAttribute("classes");
             Student s = (Student)request.getAttribute("student");
+            Account account = (Account)request.getSession().getAttribute("account");
         %>
     </head>
     <body>
+        <style>
+            .cotainer {
+                height: 700px;
+                margin-left: 650px;
+                margin-top: 100px;
+            }
+            .cotainer form {
+                background-color: #d7eaf7;
+                display: inline-block;
+                padding: 90px;
+                font-weight: bolder;
+                border: 2px solid #87CEFA;
+            }
+            .cotainer form input {
+                margin-bottom: 10px;
+                padding: 5px;
+            }
+            #submit:hover {
+                 background-color: #d7eaf7; 
+            }
+        </style>
         <div class="header">
             <div class="header-img">
                 <img src="../pic/logo.png" width="150px" height="100px" alt="">
@@ -40,8 +62,9 @@
                     <li><a href="/">Trang Chủ</a></li>
                     <li><a href="/search">Quản Lý</a></li>
                     <li><a href="/report">Báo Cáo</a></li>
-                    <li><a href="#">Liên Hệ</a></li>
-                    <li><a href="#">Hello</a></li>
+                    <li><a href="/contact">Liên Hệ</a></li>
+                    <li><a href="#">Hello <%=account.getUsername()%></a></li>
+                    <li><a href="/logout">Đăng Xuất</a></li>
                 </ul>
             </div>
         </div>
@@ -50,7 +73,7 @@
             Id: <%=s.getId()%> <input type="hidden" name="id" value="<%=s.getId()%>" /> <br/>
             Name: <input type="text" name="name" value="<%=s.getName()%>" required pattern="([a-zA-Z ])*"/> <br/>
             Dob: <input type="date" name="dob" value="<%=s.getDob()%>" /> <br/>
-            Vehicle's ID <%=s.getVehicle().getId()%> <input type="hidden" name="vid" value="<%=s.getVehicle().getId()%>" /> <br/>
+            Vehicle's ID: <%=s.getVehicle().getId()%> <input type="hidden" name="vid" value="<%=s.getVehicle().getId()%>" /> <br/>
             Vehicle's Name: <input type="text" name="vname" value="<%=s.getVehicle().getName()%>" required pattern="([a-zA-Z ])*"/> <br/>
             Vehicle's Color: <input type="text" name="color" value="<%=s.getVehicle().getColor()%>" required pattern="([a-zA-Z ])*"/> <br/>
 
@@ -63,7 +86,7 @@
                 <%}%>
             </select>
             <br/>
-            <input type="submit" value="Save"/>
+            <input id="submit" type="submit" value="Save" style="margin-top: 30px;"/>
         </form>
         </div>
             </div>

@@ -1,12 +1,10 @@
 <%-- 
-    Document   : insert
-    Created on : Mar 3, 2022, 11:14:40 AM
+    Document   : contact
+    Created on : Mar 10, 2022, 9:57:31 PM
     Author     : duc21
 --%>
 
 <%@page import="model.Account"%>
-<%@page import="java.util.ArrayList"%>
-<%@page import="model.Classes"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -24,31 +22,42 @@
         <script src="https://kit.fontawesome.com/7a93c85040.js" crossorigin="anonymous"></script>
         <link href="./css/css.css" rel="stylesheet" type="text/css"/>
         <script src="./js/js.js" type="text/javascript"></script>
-        <%
-            ArrayList<Classes> classes = (ArrayList<Classes>) request.getAttribute("classes");
-            Account account = (Account)request.getSession().getAttribute("account");
-        %>
     </head>
     <body>
         <style>
-            .cotainer {
-                height: 700px;
-                margin-left: 650px;
+            body {
+                background-color: #d7eaf7;
+            }
+            .cotainer{
+                height: 400px;
+                margin-left: 30px;
                 margin-top: 100px;
             }
-            .cotainer form {
-                background-color: #d7eaf7;
-                display: inline-block;
-                padding: 90px;
+            .cotainer h3 {
+                margin-bottom: 30px;
+            }
+            
+            #map {
+            width: 100%;
+            height: 400px;
+            background-color: grey;
+            margin-top: 50px;
+            }
+            .contact{
+                display: flex;
+                margin-top: 100px;
+                border-top: solid 10px white;
+            }
+            .fb, .im, .tw {
+                padding: 10px;
+                font-size: 30px;
+            }
+            .contact_text {
                 font-weight: bolder;
-                border: 2px solid #87CEFA;
+                font-size: 15px;
             }
-            .cotainer form input {
-                margin-bottom: 10px;
-                padding: 5px;
-            }
-            #submit:hover {
-                 background-color: #d7eaf7; 
+            .im {
+                color: red;
             }
         </style>
         <div class="header">
@@ -61,34 +70,38 @@
                     <li><a href="/search">Quản Lý</a></li>
                     <li><a href="/report">Báo Cáo</a></li>
                     <li><a href="/contact">Liên Hệ</a></li>
-                    <li><a href="#">Hello <%=account.getUsername()%></a></li>
-                    <li><a href="/logout">Đăng Xuất</a></li>
+                    <li><a href="#">Hello</a></li>
                 </ul>
             </div>
         </div>
+        <div class="contact">
         <div class="cotainer">
-        <form action="insert" method="POST">
-            Id: <input type="text" name="id"  required pattern="([0-9])*"/> <br/>
-            Name: <input type="text" name="name"  required pattern="([a-zA-Z ])*"/> <br/>
-            Dob: <input type="date" name="dob"  required/> <br/>
-            Vehicle's ID: <input type="text" name="vid"  required pattern="([0-9])*"/> <br/>
-            Vehicle's Name: <input type="text" name="vname"  required pattern="([a-zA-Z ])*"/> <br/>
-            Vehicle's Color: <input type="text" name="color"  required pattern="([a-zA-Z ])*"/> <br/>
-            Class <select name="cid">
-                <% for (Classes c : classes) {
-                %>
-                <option value="<%=c.getId()%>"><%=c.getName()%></option>
-                <%}%>
-            </select>
-            <br/>
-            <input id="submit" type="submit" value="Save" style="margin-top: 30px"/>
-        </form>
-        </div>
-            <div class="footer">
-            <h3>Liên hệ với chúng tôi:</h3> 
+        <h3>Liên hệ với chúng tôi:</h3> 
             <p>Sdt: 0977096708
             <br/> Email: ducdnhe153579@fpt.edu.vn
             <br/> Địa Chỉ liên hệ: xã Phú Thủy - huyện Lệ Thủy - tỉnh Quảng Bình  </p> 
-        </div> 
+            <p class="contact_text">Kết Nối Với Chúng Tôi</p>
+            <a href="https://www.facebook.com/nhatduc2110/"><i class="fb fa-brands fa-facebook"></i> </a>
+            <a href="https://www.instagram.com/evannnn2110/"><i class="im fa-brands fa-instagram"></i> </a>
+            <a href="https://twitter.com/Nhtc17"><i class="tw fa-brands fa-twitter"></i> </a>    
+        </div>
+         <div id="map"></div> 
+         </div>
+         <script>
+        function initMap() {
+          var uluru = {lat: 17.209574, lng: 106.714716};
+          var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 17,
+          center: uluru
+        });
+        var marker = new google.maps.Marker({
+          position: uluru,
+          map: map
+        });
+        }
+       </script>
+       <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDyaJlNbUCNuVO-_wxfcgcWdAnojMcOs1E&callback=initMap">
+       </script>
     </body>
 </html>

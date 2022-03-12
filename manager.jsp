@@ -4,6 +4,7 @@
     Author     : duc21
 --%>
 
+<%@page import="model.Account"%>
 <%@page import="model.Student"%>
 <%@page import="model.Classes"%>
 <%@page import="java.util.ArrayList"%>
@@ -24,8 +25,10 @@
         <link href="./css/css.css" rel="stylesheet" type="text/css"/>
         <script src="./js/js.js" type="text/javascript"></script>
         <%  ArrayList<Classes> classes = (ArrayList<Classes>)request.getAttribute("classes");
-            ArrayList<Student> students = (ArrayList<Student>)request.getAttribute("students");
+            ArrayList<Student> students = (ArrayList<Student>)request.getAttribute("listpage");
             int id = (Integer)request.getAttribute("id");
+            Account account = (Account)request.getSession().getAttribute("account");
+            int endP = (Integer)request.getAttribute("endP");
         %>
         <script>
             function submitForm()
@@ -44,6 +47,30 @@
         </script>
     </head>
     <body>
+        <style>
+            .cotainer {
+                height: 600px;
+                margin-left: 400px;
+                margin-top: 100px;
+                font-size: 18px;
+                font-weight: bolder;
+            }
+            .cotainer table {
+                width: 80%;
+                height: 60%;
+                margin-bottom: 30px;
+            }
+            .cotainer a {
+                text-decoration: none;
+                background-color: #d7eaf7;
+                padding: 3px;
+                border-radius: 10px;
+            }
+            
+            .insert {
+                margin-top: 5px;
+            }
+        </style>
         <div class="header">
             <div class="header-img">
                 <img src="../pic/logo.png" width="150px" height="100px" alt="">
@@ -53,13 +80,13 @@
                     <li><a href="/">Trang Chủ</a></li>
                     <li><a href="/search">Quản Lý</a></li>
                     <li><a href="/report">Báo Cáo</a></li>
-                    <li><a href="#">Liên Hệ</a></li>
-                    <li><a href="#">Hello</a></li>
+                    <li><a href="/contact">Liên Hệ</a></li>
+                    <li><a href="#">Hello <%=account.getUsername()%></a></li>
+                    <li><a href="/logout">Đăng Xuất</a></li>
                 </ul>
             </div>
         </div>
-        <div class="cotainer" style="position: relative">
-            <div class="cotainer-sub" style="position: absolute; left:400px; top: 200px;">
+        <div class="cotainer">
                 <form  method="GET" id="searchForm"> 
             Class <select name="id" onchange="submitForm();">
                 <option value="-1" >Please select a Class</option>
@@ -71,10 +98,13 @@
                 <%}%>
             </select>
         </form>
+        <form action="addclass" method="GET">
+        <input id="submit" type="submit" value="Add Class" style="margin-top: 30px"/> <input type="text" name="nameclass"  required pattern="([0-9a-zA-Z ])*"/>
+        </form>
         <br/>
-        <table border="1px">
-            <tr>
-                <td>Id</td>
+        <table border="2px">
+            <tr style="border-bottom: 2px solid black;">
+                <td >Id</td>
                 <td>Name</td>
                 <td>Dob</td>
                 <td>Vehicle's ID</td>
@@ -85,20 +115,23 @@
             <% for (Student s : students) {
             %>
             <tr>
-                <td><%=s.getId() %></td>
-                <td><%=s.getName()%></td>
-                <td><%=s.getDob()%></td>
-                <td><%=s.getVehicle().getId() %></td>
-                <td><%=s.getVehicle().getName()%></td>
-                <td><%=s.getVehicle().getColor()%></td>
-                <td><a href="edit?id=<%=s.getId()%>">Edit</a>
+                <td style="border-bottom: 2px solid black;"><%=s.getId() %></td>
+                <td style="border-bottom: 2px solid black;"><%=s.getName()%></td>
+                <td style="border-bottom: 2px solid black;"><%=s.getDob()%></td>
+                <td style="border-bottom: 2px solid black;"><%=s.getVehicle().getId() %></td>
+                <td style="border-bottom: 2px solid black;"><%=s.getVehicle().getName()%></td>
+                <td style="border-bottom: 2px solid black;"><%=s.getVehicle().getColor()%></td>
+                <td style="border-bottom: 2px solid black;"><a href="edit?id=<%=s.getId()%>">Edit</a>
                     <a href="#" onclick="deleteStudent(<%=s.getId()%>, <%=s.getVehicle().getId()%>)">Delete</a>
                 </td>
             </tr>
             <%}%>
         </table> 
-        <a href="insert">Insert</a>
-            </div>
+        Page: <% for (int i = 1; i <= endP; i++) {
+            %>
+            <a href="search?index=<%=i%>&id=<%=id%>"><%=i%></a>
+            <%}%> <br/>
+        <a class="insert" href="insert">Insert</a>
         </div>
         <div class="footer">
             <h3>Liên hệ với chúng tôi:</h3> 

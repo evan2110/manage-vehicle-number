@@ -76,7 +76,7 @@ public class VehicleDBContext extends DBContext<Vehicle>{
                 try {
                     stm.close();
                 } catch (SQLException ex) {
-                    Logger.getLogger(StudentDBContext.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(VehicleDBContext.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
             if(connection != null)
@@ -84,7 +84,7 @@ public class VehicleDBContext extends DBContext<Vehicle>{
                 try {
                     connection.close();
                 } catch (SQLException ex) {
-                    Logger.getLogger(StudentDBContext.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(VehicleDBContext.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }
