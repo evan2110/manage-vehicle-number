@@ -44,6 +44,7 @@
                 padding: 90px;
                 font-weight: bolder;
                 border: 2px solid #87CEFA;
+                width: 40%;
             }
             .cotainer form input {
                 margin-bottom: 10px;
@@ -52,6 +53,95 @@
             #submit:hover {
                  background-color: #d7eaf7; 
             }
+            .footer-dark {
+  padding:50px 0;
+  color:#f0f9ff;
+  background-color:#282d32;
+}
+
+.footer-dark h3 {
+  margin-top:0;
+  margin-bottom:12px;
+  font-weight:bold;
+  font-size:16px;
+}
+
+.footer-dark ul {
+  padding:0;
+  list-style:none;
+  line-height:1.6;
+  font-size:14px;
+  margin-bottom:0;
+}
+
+.footer-dark ul a {
+  color:inherit;
+  text-decoration:none;
+  opacity:0.6;
+}
+
+.footer-dark ul a:hover {
+  opacity:0.8;
+}
+
+@media (max-width:767px) {
+  .footer-dark .item:not(.social) {
+    text-align:center;
+    padding-bottom:20px;
+  }
+}
+
+.footer-dark .item.text {
+  margin-bottom:36px;
+}
+
+@media (max-width:767px) {
+  .footer-dark .item.text {
+    margin-bottom:0;
+  }
+}
+
+.footer-dark .item.text p {
+  opacity:0.6;
+  margin-bottom:0;
+}
+
+.footer-dark .item.social {
+  text-align:center;
+}
+
+@media (max-width:991px) {
+  .footer-dark .item.social {
+    text-align:center;
+    margin-top:20px;
+  }
+}
+
+.footer-dark .item.social > a {
+  font-size:20px;
+  width:36px;
+  height:36px;
+  line-height:36px;
+  display:inline-block;
+  text-align:center;
+  border-radius:50%;
+  box-shadow:0 0 0 1px rgba(255,255,255,0.4);
+  margin:0 8px;
+  color:#fff;
+  opacity:0.75;
+}
+
+.footer-dark .item.social > a:hover {
+  opacity:0.9;
+}
+
+.footer-dark .copyright {
+  text-align:center;
+  padding-top:24px;
+  opacity:0.3;
+  font-size:13px;
+  margin-bottom:0;
+}
         </style>
         <div class="header">
             <div class="header-img">
@@ -59,23 +149,23 @@
             </div>
             <div class="header-nav">
                 <ul>
-                    <li><a href="/">Trang Chủ</a></li>
-                    <li><a href="/search">Quản Lý</a></li>
-                    <li><a href="/report">Báo Cáo</a></li>
-                    <li><a href="/contact">Liên Hệ</a></li>
-                    <li><a href="#">Hello <%=account.getUsername()%></a></li>
-                    <li><a href="/logout">Đăng Xuất</a></li>
+                    <li><a href="/"><i class="fa fa-home" style="margin-right: 10px;"></i>Home</a></li>
+                    <li><a href="/search"><i class="fa fa-cogs" style="margin-right: 10px;"></i>Manage</a></li>
+                    <li><a href="/report"><i class="fa fa-bullhorn" style="margin-right: 10px;"></i>Report</a></li>
+                    <li><a href="/contact"><i class="fa fa-envelope" style="margin-right: 10px;"></i>Contact</a></li>
+                    <li><a href="/profile">Hello <%=account.getUsername()%></a></li>
+                    <li><a href="/logout">Log Out</a></li>
                 </ul>
             </div>
         </div>
         <div class="cotainer">
         <form action="edit" method="POST">
             Id: <%=s.getId()%> <input type="hidden" name="id" value="<%=s.getId()%>" /> <br/>
-            Name: <input type="text" name="name" value="<%=s.getName()%>" required pattern="([a-zA-Z ])*"/> <br/>
-            Dob: <input type="date" name="dob" value="<%=s.getDob()%>" /> <br/>
+            <input type="text" name="name" value="<%=s.getName()%>" required pattern="([a-zA-Z ])*" placeholder="Name"  style="width:100%;"/> <br/>
+            <input type="date" name="dob" value="<%=s.getDob()%>" placeholder="Date of birth" style="width:100%;"/> <br/>
             Vehicle's ID: <%=s.getVehicle().getId()%> <input type="hidden" name="vid" value="<%=s.getVehicle().getId()%>" /> <br/>
-            Vehicle's Name: <input type="text" name="vname" value="<%=s.getVehicle().getName()%>" required pattern="([a-zA-Z ])*"/> <br/>
-            Vehicle's Color: <input type="text" name="color" value="<%=s.getVehicle().getColor()%>" required pattern="([a-zA-Z ])*"/> <br/>
+            <input type="text" name="vname" value="<%=s.getVehicle().getName()%>" required pattern="([a-zA-Z ])*" placeholder="Vehicle's Name" style="width:100%;"/> <br/>
+            <input type="text" name="color" value="<%=s.getVehicle().getColor()%>" required pattern="([a-zA-Z ])*" placeholder="Vehicle's Color" style="width:100%;"/> <br/>
 
             Class <select name="cid">
                 <% for (Classes c : classes) {
@@ -86,15 +176,41 @@
                 <%}%>
             </select>
             <br/>
-            <input id="submit" type="submit" value="Save" style="margin-top: 30px;"/>
+            <input id="submit" type="submit" value="Save"  style="margin-top: 30px; background-color: cornflowerblue;width: 30%; margin-left: 35%; color:white;"/>
         </form>
         </div>
             </div>
-            <div class="footer">
-            <h3>Liên hệ với chúng tôi:</h3> 
-            <p>Sdt: 0977096708
-            <br/> Email: ducdnhe153579@fpt.edu.vn
-            <br/> Địa Chỉ liên hệ: xã Phú Thủy - huyện Lệ Thủy - tỉnh Quảng Bình  </p> 
-        </div> 
+            <div class="footer-dark">
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6 col-md-3 item">
+                        <h3>Services</h3>
+                        <ul>
+                            <li><a href="#">Web design</a></li>
+                            <li><a href="#">Development</a></li>
+                            <li><a href="#">Hosting</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-6 col-md-3 item">
+                        <h3>About</h3>
+                        <ul>
+                            <li><a href="#">Company</a></li>
+                            <li><a href="#">Team</a></li>
+                            <li><a href="#">Careers</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6 item text">
+                        <h3>MVN</h3>
+                        <p>We are committed to the quality of this application. Always update and develop more based on everyone's feedback.</p>
+                    </div>
+                    <div class="col item social"><a href="https://www.facebook.com/nhatduc2110/"><i class="fb fa-brands fa-facebook"></i> </a><a href="https://www.instagram.com/evannnn2110/"><i class="im fa-brands fa-instagram"></i> </a>
+                    <a href="https://twitter.com/Nhtc17"><i class="tw fa-brands fa-twitter"></i> </a>    
+                    </div>
+                </div>
+                <p class="copyright">Company Name © 2022</p>
+            </div>
+        </footer>
+    </div>
     </body>
 </html>

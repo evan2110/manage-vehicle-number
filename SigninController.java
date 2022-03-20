@@ -1,5 +1,6 @@
 package controller.auth;
 
+import com.sun.java.swing.plaf.windows.resources.windows;
 import dal.AccountDBContext;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -34,6 +35,7 @@ public class SigninController extends HttpServlet {
         if (account == null) {
             response.setContentType("text/html;charset=UTF-8");
             try (PrintWriter out = response.getWriter()) {
+                /* TODO output your page here. You may use following sample code. */
                 out.println("<!DOCTYPE html>\n" +
                 "<head>\n" +
                 "    <title>Quan ly nha xe</title>\n" +
@@ -120,7 +122,7 @@ public class SigninController extends HttpServlet {
                 "        </div>\n" +
                 "    </div>\n" +
                 "    <div class=\"cover\">\n" +
-                "    <p>Tên đăng nhập hoặc mật khẩu không đúng!</p>\n" +
+                "    <p>Tên đăng nhập hoặc mật khẩu sai !</p>\n" +
                 "  <button type=\"button\" onclick=\"quay_lai_trang_truoc()\">Quay lại trang trước</button>\n" +
                 "</div>" +
                 "  <script>\n" +

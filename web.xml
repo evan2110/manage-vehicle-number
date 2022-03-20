@@ -48,6 +48,10 @@
         <servlet-name>AddClassController</servlet-name>
         <servlet-class>controller.manage.AddClassController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ProfileController</servlet-name>
+        <servlet-class>controller.manage.ProfileController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>SigninController</servlet-name>
         <url-pattern>/signin</url-pattern>
@@ -95,6 +99,10 @@
     <servlet-mapping>
         <servlet-name>AddClassController</servlet-name>
         <url-pattern>/addclass</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProfileController</servlet-name>
+        <url-pattern>/profile</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

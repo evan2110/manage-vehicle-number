@@ -1,6 +1,6 @@
 <%-- 
-    Document   : contact
-    Created on : Mar 10, 2022, 9:57:31 PM
+    Document   : profile
+    Created on : Mar 20, 2022, 8:53:51 AM
     Author     : duc21
 --%>
 
@@ -22,42 +22,31 @@
         <script src="https://kit.fontawesome.com/7a93c85040.js" crossorigin="anonymous"></script>
         <link href="./css/css.css" rel="stylesheet" type="text/css"/>
         <script src="./js/js.js" type="text/javascript"></script>
+        <% 
+        Account account = (Account)request.getSession().getAttribute("account");
+        String alert = (String)request.getAttribute("alert");
+        %>
     </head>
-    <body>
-        <style>
-            body {
+    <style>
+            .cotainer {
+                height: 700px;
+                margin-left: 650px;
+                margin-top: 100px;
+            }
+            .cotainer form {
                 background-color: #d7eaf7;
-            }
-            .cotainer{
-                height: 400px;
-                margin-left: 30px;
-                margin-top: 100px;
-            }
-            .cotainer h3 {
-                margin-bottom: 30px;
-            }
-            
-            #map {
-            width: 100%;
-            height: 400px;
-            background-color: grey;
-            margin-top: 50px;
-            }
-            .contact{
-                display: flex;
-                margin-top: 100px;
-                border-top: solid 10px white;
-            }
-            .fb, .im, .tw {
-                padding: 10px;
-                font-size: 30px;
-            }
-            .contact_text {
+                display: inline-block;
+                padding: 90px;
                 font-weight: bolder;
-                font-size: 15px;
+                border: 2px solid #87CEFA;
+                width: 40%;
             }
-            .im {
-                color: red;
+            .cotainer form input {
+                margin-bottom: 10px;
+                padding: 5px;
+            }
+            #submit:hover {
+                 background-color: #d7eaf7; 
             }
             .footer-dark {
   padding:50px 0;
@@ -148,7 +137,12 @@
   font-size:13px;
   margin-bottom:0;
 }
+
+.cotainer p {
+    display: inline-block;
+}
         </style>
+    <body>
         <div class="header">
             <div class="header-img">
                 <img src="../pic/logo.png" width="150px" height="100px" alt="">
@@ -159,40 +153,25 @@
                     <li><a href="/search"><i class="fa fa-cogs" style="margin-right: 10px;"></i>Manage</a></li>
                     <li><a href="/report"><i class="fa fa-bullhorn" style="margin-right: 10px;"></i>Report</a></li>
                     <li><a href="/contact"><i class="fa fa-envelope" style="margin-right: 10px;"></i>Contact</a></li>
-                    <li><a href="#">Hello</a></li>
+                    <li><a href="/profile">Hello <%=account.getUsername()%></a></li>
+                    <li><a href="/logout">Log Out</a></li>
                 </ul>
             </div>
         </div>
-        <div class="contact">
         <div class="cotainer">
-        <h3>Liên hệ với chúng tôi:</h3> 
-            <p>Sdt: 0977096708
-            <br/> Email: ducdnhe153579@fpt.edu.vn
-            <br/> Địa Chỉ liên hệ: xã Phú Thủy - huyện Lệ Thủy - tỉnh Quảng Bình  </p> 
-            <p class="contact_text">Kết Nối Với Chúng Tôi</p>
-            <a href="https://www.facebook.com/nhatduc2110/"><i class="fb fa-brands fa-facebook"></i> </a>
-            <a href="https://www.instagram.com/evannnn2110/"><i class="im fa-brands fa-instagram"></i> </a>
-            <a href="https://twitter.com/Nhtc17"><i class="tw fa-brands fa-twitter"></i> </a>    
+            <h3 style="margin-left: 120px; color: blue;">Welcome <%=account.getUsername()%></h3>
+            <form action="profile" method="POST">
+            <p style="margin-right: 10px;">Your Username:</p><%=account.getUsername()%> <input type="hidden" value="<%=account.getUsername()%>" /> <br/>
+            <p style="margin-right: 10px;">Your Password:</p><%=account.getPassword()%> <input type="hidden" value="<%=account.getPassword()%>" /> <br/>
+            <h6 style="color: blue;">Do you want to change password ?</h6>
+            <input type="password" name="password"  required pattern="([0-9a-zA-Z ])*" placeholder="Password"  style="width:100%;"/> <br/>
+            <input type="password" name="repassword"  required pattern="([0-9a-zA-Z ])*" placeholder="Re-Password"  style="width:100%;"/> <br/>
+            <%if(alert!=null){%> <p style="color: red"><%=alert%></p> <%}%>
+            <input id="submit" type="submit" value="Save" style="margin-top: 30px; background-color: cornflowerblue;width: 30%; margin-left: 35%; color:white;"/>
+        </form>
+            
         </div>
-         <div id="map"></div> 
-         </div>
-         <script>
-        function initMap() {
-          var uluru = {lat: 17.209574, lng: 106.714716};
-          var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 17,
-          center: uluru
-        });
-        var marker = new google.maps.Marker({
-          position: uluru,
-          map: map
-        });
-        }
-       </script>
-       <script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDyaJlNbUCNuVO-_wxfcgcWdAnojMcOs1E&callback=initMap">
-       </script>
-       <div class="footer-dark">
+            <div class="footer-dark">
         <footer>
             <div class="container">
                 <div class="row">
@@ -216,8 +195,8 @@
                         <h3>MVN</h3>
                         <p>We are committed to the quality of this application. Always update and develop more based on everyone's feedback.</p>
                     </div>
-                    <div class="col item social"><a href="https://www.facebook.com/nhatduc2110/"><i class=" fa-brands fa-facebook"></i> </a><a href="https://www.instagram.com/evannnn2110/"><i class=" fa-brands fa-instagram"></i> </a>
-                    <a href="https://twitter.com/Nhtc17"><i class=" fa-brands fa-twitter"></i> </a>    
+                    <div class="col item social"><a href="https://www.facebook.com/nhatduc2110/"><i class="fb fa-brands fa-facebook"></i> </a><a href="https://www.instagram.com/evannnn2110/"><i class="im fa-brands fa-instagram"></i> </a>
+                    <a href="https://twitter.com/Nhtc17"><i class="tw fa-brands fa-twitter"></i> </a>    
                     </div>
                 </div>
                 <p class="copyright">Company Name © 2022</p>

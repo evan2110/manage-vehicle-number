@@ -100,8 +100,42 @@ public class AccountDBContext extends DBContext<Account> {
     }
 
     @Override
-    public void update(Account model) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void update(Account a) {
+        String sql = "UPDATE [Account]\n" +
+                    "   SET [username] = ?\n" +
+                    "      ,[password] = ?\n" +
+                    " WHERE username = ?";
+        PreparedStatement stm = null;
+        try {
+            stm = connection.prepareStatement(sql);
+            stm.setString(3, a.getUsername());
+            stm.setString(1, a.getUsername());
+            stm.setString(2, a.getPassword());
+            
+            stm.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(StudentDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        finally
+        {
+            if(stm!=null)
+            {
+                try {
+                    stm.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(StudentDBContext.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            if(connection != null)
+            {
+                try {
+                    connection.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(StudentDBContext.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        
     }
 
     @Override

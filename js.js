@@ -64,6 +64,7 @@ function signin_close(){
     return false;
     }
     }
+    
     function openeye(){
       var password = document.getElementById("password");    
       if(password.getAttribute("type") ===  "password"){
